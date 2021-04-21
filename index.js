@@ -32,7 +32,7 @@ client.on('guildMemberAdd', member => {
 	.setColor('#000000')
 	.setTitle(`You ready for more spoops with fun people, ${member.user.username}? Well say hi and let the fun begin.`)
 
-	message.channel.send(embed);
+	member.guild.channels.cache.get('830293335611801649').send(embed);
 })
 
 // This is the start of the main function when the bot is turned on
