@@ -28,6 +28,15 @@ module.exports = {
         }
 
         if (ghosts.includes(choice)) {
+            if (choice == 'wraith') {
+                const embed = new Discord.MessageEmbed()
+                .setColor('#000000')
+                .setTitle(`__Phasmophobia Wiki: ${choice.charAt(0).toUpperCase() + choice.slice(1)}__`)
+                .addField(`https://phasmophobia.fandom.com/wiki/Ghosts#${choice.charAt(0).toUpperCase() + choice.slice(1)}`, '*Also, according to Quaz, it\'s the only ghost that will kill you through a door.*')
+
+                return message.channel.send(embed)
+            }
+
             const embed = new Discord.MessageEmbed()
             .setColor('#000000')
             .setTitle(`__Phasmophobia Wiki: ${choice.charAt(0).toUpperCase() + choice.slice(1)}__`)
