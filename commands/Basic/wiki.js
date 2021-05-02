@@ -40,7 +40,7 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
             .setColor('#000000')
             .setTitle(`__Phasmophobia Wiki: ${choice.charAt(0).toUpperCase() + choice.slice(1)}__`)
-            .addField(`https://phasmophobia.fandom.com/wiki/Ghosts#${choice.charAt(0).toUpperCase() + choice.slice(1)}`, '\u200B')
+            .addField(`https://phasmophobia.fandom.com/wiki/${choice.charAt(0).toUpperCase() + choice.slice(1)}`, '\u200B')
 
             return message.channel.send(embed)
         }
