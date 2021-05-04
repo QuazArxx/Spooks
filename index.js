@@ -2,6 +2,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
+const welcomeMessage = require('./messages.js');
+
 // Use these variables for timeout functions
 const second = 1000;
 const minute = 1000 * 60;
@@ -30,7 +32,7 @@ client.once('ready', () => {
 client.on('guildMemberAdd', member => {
 	const embed = new Discord.MessageEmbed()
 	.setColor('#000000')
-	.setTitle(`You ready for more spoops with fun people, ${member.user.username}? Well say hi and let the fun begin.`)
+	.setTitle(`Hey ${member.user.username} ` + welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)])
 
 	member.guild.channels.cache.get('830293335611801649').send(embed);
 })
