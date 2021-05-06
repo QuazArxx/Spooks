@@ -2,7 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
-const welcomeMessage = require('./messages.js');
+const welcomeMessage = require('./messages.json');
 
 // Use these variables for timeout functions
 const second = 1000;
@@ -30,11 +30,14 @@ client.once('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
+	let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
+
 	const embed = new Discord.MessageEmbed()
 	.setColor('#000000')
-	.setTitle(`Hey ${member.user.username} ` + welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)])
+	.setTitle(`Hey ${member.user.username} ${randomMessage}`)
 
-	member.guild.channels.cache.get('830293335611801649').send(embed);
+	//member.guild.channels.cache.get('830293335611801649').send(embed);
+	member.guild.channels.cache.get('717048529968824464').send(embed);
 })
 
 // This is the start of the main function when the bot is turned on
