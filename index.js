@@ -36,8 +36,7 @@ client.on('guildMemberAdd', member => {
 	.setColor('#000000')
 	.setTitle(`Hey ${member.user.username} ${randomMessage}`)
 
-	//member.guild.channels.cache.get('830293335611801649').send(embed);
-	member.guild.channels.cache.get('717048529968824464').send(embed);
+	member.guild.channels.cache.get('830293335611801649').send(embed);
 })
 
 // This is the start of the main function when the bot is turned on
