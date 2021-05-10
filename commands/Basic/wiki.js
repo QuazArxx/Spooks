@@ -8,7 +8,18 @@ module.exports = {
     execute(message, args) {
         args = message.content.slice(prefix.length).split(' ');
 
-        let ghosts = ['phantom', 'spirit', 'poltergeist', 'demon', 'wraith', 'mare', 'revenant', 'banshee', 'oni', 'yurei', 'shade', 'jinn'];
+        let ghosts = [
+            'phantom', 'spirit', 'poltergeist', 'demon', 'wraith', 
+            'mare', 'revenant', 'banshee', 'oni', 'yurei', 'shade', 'jinn'
+        ];
+
+        let equipment = [
+            'candle', 'crucifix', 'emf_reader', 'flashlight', 'ghost_writing_book',
+            'glow_stick', 'head_mounted_camera', 'infrared_light_sensor',
+            'lighter', 'motion_sensor', 'parabolic_microphone', 'photo_camera',
+            'salt_shaker', 'sanity_pills', 'smudge_sticks', 'sound_sensor', 'spirit_box',
+            'strong_flashlight', 'thermometer', 'tripod', 'uv_flashlight', 'video_camera'
+        ]
 
         if (!args[1]) {
             const embed = new Discord.MessageEmbed()
@@ -25,14 +36,28 @@ module.exports = {
             choice = 'revenant'
         } else if (choice == 'polt') {
             choice = 'poltergeist'
+        } else if (choice == 'headcam') {
+            choice = 'head_mounted_camera'
+        } else if (choice == 'glowstick') {
+            choice = 'glow_stick'
+        } else if (choice == 'emf') {
+            choice = 'emf_reader'
+        } else if (choice == 'book') {
+            choice = 'ghost_writing_book'
+        } else if (choice == 'ir') {
+            choice = 'infrared_light_sensor'
+        } else if (choice == 'pills') {
+            choice = 'sanity_pills'
+        } else if (choice == 'smudge') {
+            choice = 'smudge_sticks'
         }
 
-        if (ghosts.includes(choice)) {
+        if (ghosts.includes(choice) || equipment.includes(choice)) {
             if (choice == 'wraith') {
                 const embed = new Discord.MessageEmbed()
                 .setColor('#000000')
                 .setTitle(`__Phasmophobia Wiki: ${choice.charAt(0).toUpperCase() + choice.slice(1)}__`)
-                .addField(`https://phasmophobia.fandom.com/wiki/Ghosts#${choice.charAt(0).toUpperCase() + choice.slice(1)}`, '*Also, according to Quaz, it\'s the only ghost that will kill you through a door.*')
+                .addField(`https://phasmophobia.fandom.com/wiki/${choice.charAt(0).toUpperCase() + choice.slice(1)}`, '*Also, according to Quaz, it\'s the only ghost that will kill you through a door.*')
 
                 return message.channel.send(embed)
             }
