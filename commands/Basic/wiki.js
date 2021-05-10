@@ -10,7 +10,7 @@ module.exports = {
 
         let ghosts = [
             'phantom', 'spirit', 'poltergeist', 'demon', 'wraith', 
-            'mare', 'revenant', 'banshee', 'oni', 'yurei', 'shade', 'jinn'
+            'mare', 'revenant', 'banshee', 'oni', 'yurei', 'shade', 'jinn' 
         ];
 
         let equipment = [
