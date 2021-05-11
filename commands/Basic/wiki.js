@@ -21,6 +21,8 @@ module.exports = {
             'strong_flashlight', 'thermometer', 'tripod', 'uv_flashlight', 'video_camera'
         ]
 
+
+        // Posts the general link to the wiki if there's no argument
         if (!args[1]) {
             const embed = new Discord.MessageEmbed()
             .setColor('#000000')
@@ -30,8 +32,10 @@ module.exports = {
             return message.channel.send(embed)
         }
 
+        // Sets argument to lowercase
         let choice = args[1].toLowerCase()
 
+        // Changes short words to one of the options
         if (choice == 'rev') {
             choice = 'revenant'
         } else if (choice == 'polt') {
@@ -52,6 +56,7 @@ module.exports = {
             choice = 'smudge_sticks'
         }
 
+        // Posts the link for the ghost or equipment the user chooses
         if (ghosts.includes(choice) || equipment.includes(choice)) {
             if (choice == 'wraith') {
                 const embed = new Discord.MessageEmbed()
@@ -70,9 +75,10 @@ module.exports = {
             return message.channel.send(embed)
         }
 
+        // Error message if they didn't type something on any list
         const embed = new Discord.MessageEmbed()
         .setColor('#ff0000')
-        .setTitle('Please check the spelling of the ghost.\n\nFor Revenant and Poltergeist, you can use the shortened version "rev" or "polt" respectively.')
+        .setTitle('Please check the spelling of the ghost or equipment you entered.\n\nType "!wiki shortcuts" for a list of shortened words you can use.')
 
         message.channel.send(embed)
     }
