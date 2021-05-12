@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 
 const { prefix } = require('../../config.json');
+const shortcuts = require('../../wikiShortcuts.json');
 
 module.exports = {
     name: 'wiki',
@@ -35,25 +36,12 @@ module.exports = {
         // Sets argument to lowercase
         let choice = args[1].toLowerCase()
 
-        // Changes short words to one of the options
-        if (choice == 'rev') {
-            choice = 'revenant'
-        } else if (choice == 'polt') {
-            choice = 'poltergeist'
-        } else if (choice == 'headcam') {
-            choice = 'head_mounted_camera'
-        } else if (choice == 'glowstick') {
-            choice = 'glow_stick'
-        } else if (choice == 'emf') {
-            choice = 'emf_reader'
-        } else if (choice == 'book') {
-            choice = 'ghost_writing_book'
-        } else if (choice == 'ir') {
-            choice = 'infrared_light_sensor'
-        } else if (choice == 'pills') {
-            choice = 'sanity_pills'
-        } else if (choice == 'smudge') {
-            choice = 'smudge_sticks'
+        // Changes shortcuts to one of the options
+        for (let x = 0; x < shortcuts.length; x++) {
+            if (shortcuts[x].shortcut == choice) {
+                choice = shortcuts[x].name
+                break;
+            }
         }
 
         // Posts the link for the ghost or equipment the user chooses
