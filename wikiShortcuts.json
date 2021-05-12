@@ -1,0 +1,46 @@
+[
+    {
+        "shortcut": "rev",
+        "name": "revenant"
+    },
+
+    {
+        "shortcut": "polt",
+        "name": "poltergeist"
+    },
+
+    {
+        "shortcut": "headcam",
+        "name": "head_mounted_camera"
+    },
+
+    {
+        "shortcut": "glowstick",
+        "name": "glow_stick"
+    },
+
+    {
+        "shortcut": "emf",
+        "name": "emf_reader"
+    },
+
+    {
+        "shortcut": "book",
+        "name": "ghost_writing_book"
+    },
+
+    {
+        "shortcut": "ir",
+        "name": "infrared_light_sensor"
+    },
+
+    {
+        "shortcut": "pills",
+        "name": "sanity_pills"
+    },
+
+    {
+        "shortcut": "smudge",
+        "name": "smudge_sticks"
+    }
+]
