@@ -1,28 +1,52 @@
 const fs = require('fs')
 
-const members = require('../../members.json')
+const phasMembers = require('../../members.json');
 
 module.exports = {
     name: 'timeout',
     description: 'Puts the person in timeout',
     execute(message, args) {
+        // Only Lexi can use this command
+        if (!(message.author.id == '771120373940224000')) {
+            if (message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')
+            else return
+        }
+
+        if (!message.mentions.users.size) return message.channel.send('You forgot to mention someone!')
+
+        let target = message.mentions.users.first()
+
         // Pushes information of mentioned user if they're not already on the list
-        if (!members.some(user => user.id === message.mentions.users.first().id)) {
-            members.push({
-                name: message.mentions.users.first().username,
-                id: message.mentions.users.first().id,
-                roles: []
+        if (!phasMembers.some(user => user.id === target.id)) {
+            phasMembers.push({
+                name: target.username,
+                id: target.id,
+                roles: [],
+                inTimeout: false
             })
         }
         
-        // Push all information to members.json
-        for (let x = 0; x < members.length; x++) {
-            if (!members) return
+        // Remove roles from file, then add current roles to file, then change inTimeout
+        for (let x = 0; x < phasMembers.length; x++) {
+            if (phasMembers[x].id == target.id) {
+                phasMembers[x].roles.length = 0
+                phasMembers[x].inTimeout = true
+                if (!message.guild.members.cache.get(target.id)) {
+                    phasMembers[x].roles.length = 0
+                    phasMembers[x].roles.push(message.guild.members.cache.get(target.id).roles.cache)
+                    phasMembers[x].inTimeout = true
+                }  
+            }
         }
 
-        // Remove all roles
-            // Check through every role the user has and remove it
-            // Add the timeout role
-    
+        fs.writeFile('./members.json', JSON.stringify(phasMembers), err => {
+            if (err) console.error(err);
+        });
+
+        // Remove all roles and add timeout role
+        message.guild.members.cache.get(target.id).roles.set([])
+        message.guild.members.cache.get(target.id).roles.add('842463222446817370')
+
+        message.channel.send(`${target.username} was put in timeout!`)
     }
 }
