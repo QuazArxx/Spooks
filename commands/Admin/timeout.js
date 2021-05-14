@@ -7,10 +7,10 @@ module.exports = {
     description: 'Puts the person in timeout',
     execute(message, args) {
         // Only Lexi can use this command
-        if (!(message.author.id == '771120373940224000')) {
+        /*if (!(message.author.id == '771120373940224000')) {
             if (message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')
             else return
-        }
+        }*/
 
         if (!message.mentions.users.size) return message.channel.send('You forgot to mention someone!')
 
@@ -28,15 +28,13 @@ module.exports = {
         
         // Remove roles from file, then add current roles to file, then change inTimeout
         for (let x = 0; x < phasMembers.length; x++) {
-            if (phasMembers[x].id == target.id) {
-                phasMembers[x].roles.length = 0
-                phasMembers[x].inTimeout = true
-                if (!message.guild.members.cache.get(target.id)) {
-                    phasMembers[x].roles.length = 0
-                    phasMembers[x].roles.push(message.guild.members.cache.get(target.id).roles.cache)
-                    phasMembers[x].inTimeout = true
-                }  
-            }
+            phasMembers[x].roles.length = 0
+            phasMembers[x].inTimeout = true
+
+            if (!message.guild.members.cache.get(target.id).roles.cache.size == 0) {
+                //phasMembers[x].roles.push(message.guild.members.cache.get(target.id).roles.cache.name)
+                console.log(message.guild.members.cache.get(target.id).roles.cache.name)
+            }  
         }
 
         fs.writeFile('./members.json', JSON.stringify(phasMembers), err => {
@@ -45,7 +43,7 @@ module.exports = {
 
         // Remove all roles and add timeout role
         message.guild.members.cache.get(target.id).roles.set([])
-        message.guild.members.cache.get(target.id).roles.add('842463222446817370')
+        //message.guild.members.cache.get(target.id).roles.add('842463222446817370')
 
         message.channel.send(`${target.username} was put in timeout!`)
     }
