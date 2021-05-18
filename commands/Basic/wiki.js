@@ -49,20 +49,27 @@ module.exports = {
         }
 
         // Posts the link for the ghost or equipment the user chooses
-        if (!(this.ghost == '') || !(this.tool == '')) {
-            if (choice == 'wraith') {
+        if (!(this.ghost == '')) {
+            if (this.ghost == 'Wraith') {
                 const embed = new Discord.MessageEmbed()
                 .setColor('#000000')
-                .setTitle(`__Phasmophobia Wiki: ${choice.charAt(0).toUpperCase() + choice.slice(1)}__`)
-                .addField(`https://phasmophobia.fandom.com/wiki/${choice}`, '*Also, according to Quaz, it\'s the only ghost that will kill you through a door.*')
+                .setTitle(`__Phasmophobia Wiki: ${this.ghost}__`)
+                .addField(`https://phasmophobia.fandom.com/wiki/${this.ghost}`, '*Also, according to Quaz, it\'s the only ghost that will kill you through a door.*')
+
+                return message.channel.send(embed)
+            } else {
+                const embed = new Discord.MessageEmbed()
+                .setColor('#000000')
+                .setTitle(`__Phasmophobia Wiki: ${this.ghost}__`)
+                .addField(`https://phasmophobia.fandom.com/wiki/${this.ghost}`, '\u200B')
 
                 return message.channel.send(embed)
             }
-
+        } else if (!(this.tool == '')) {
             const embed = new Discord.MessageEmbed()
             .setColor('#000000')
-            .setTitle(`__Phasmophobia Wiki: ${choice.charAt(0).toUpperCase() + choice.slice(1)}__`)
-            .addField(`https://phasmophobia.fandom.com/wiki/${choice.charAt(0).toUpperCase() + choice.slice(1)}`, '\u200B')
+            .setTitle(`__Phasmophobia Wiki: ${this.tool}__`)
+            .addField(`https://phasmophobia.fandom.com/wiki/${this.tool}`, '\u200B')
 
             return message.channel.send(embed)
         }
