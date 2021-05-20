@@ -20,6 +20,30 @@ module.exports = {
             .addField('https://phasmophobia.fandom.com/wiki/Main_Page', '\u200B')
 
             return message.channel.send(embed)
+        } else if (args[1] == 'shortcuts') {
+            let ghostShortcuts = []
+            let equipShortcuts = []
+
+            for (let x = 0; x < ghosts.length; x++) {
+                if (!(ghosts[x].shortcut == 'none')) {
+                    ghostShortcuts.push(ghosts[x].shortcut)
+                }
+            }
+
+            for (let x = 0; x < equipment.length; x++) {
+                if (!(equipment[x].shortcut == 'none')) {
+                    equipShortcuts.push(equipment[x].shortcut)
+                }
+            }
+            const embed = new Discord.MessageEmbed()
+            .setColor('#000000')
+            .setTitle('__Ghost and Equipment Shortcuts__')
+            .addFields(
+                {name: 'Ghosts:', value: ghostShortcuts.join(', ')},
+                {name: 'Equipment:', value: equipShortcuts.join(', ')}
+            )
+
+            return message.channel.send(embed)
         }
 
         // Sets argument to lowercase
