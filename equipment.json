@@ -128,6 +128,6 @@
     {
         "lowercase":"video_Camera",
         "capitalize":"Video_Camera",
-        "shortcut":"dslr"
+        "shortcut":"vidcam"
     }
 ]
