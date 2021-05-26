@@ -6,7 +6,7 @@ module.exports = {
     name: 'timeout',
     description: 'Puts the person in timeout',
     aliases: 'to',
-    execute(message, args) {
+    async execute(message, args){
         // Only Lexi can use this command
         if (!(message.author.id == '771120373940224000')) {
             if (message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')
@@ -45,10 +45,10 @@ module.exports = {
             });
 
             // Remove all roles and add timeout role
-            message.guild.members.cache.get(target.id).roles.set([])
-            message.guild.members.cache.get(target.id).roles.add('842463222446817370')
+            await message.guild.members.cache.get(target.id).roles.set([])
+            await message.guild.members.cache.get(target.id).roles.add('842463222446817370')
 
-            message.channel.send(`${target.username} was put in timeout!`)
+            await message.channel.send(`${target.username} was put in timeout!`)
         } else if (this.isInTimeout(target) == true) {
             for (let x = 0; x < phasMembers.length; x++) {
                 if (phasMembers[x].id == target.id) {
