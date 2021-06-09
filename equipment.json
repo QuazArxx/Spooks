@@ -58,6 +58,12 @@
         "capitalize":"Motion_Sensor",
         "shortcut":"motion"
     },
+
+    {
+        "lowercase": "ouija_board",
+        "capitalize": "Ouija_Board",
+        "shortcut": "ouija"
+    },
     
     {
         "lowercase":"parabolic_microphone",
