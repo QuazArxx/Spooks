@@ -25,7 +25,7 @@ module.exports = {
 
         equipment.push({
             lowercase: args[1].toLowerCase(),
-            uppercase: args[1],
+            capitalize: args[1],
             shortcut: short
         })
 
