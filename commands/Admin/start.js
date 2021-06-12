@@ -1,6 +1,7 @@
+const fs = require('fs')
 const Discord = require('discord.js')
 
-const { isThereCompetition } = require('../../functions')
+const functions = require('../../functions')
 const competition = require('../../competition.json')
 
 module.exports = {
@@ -8,9 +9,13 @@ module.exports = {
     description: 'Starts competition times.',
     permissions: 'ADMINISTRATOR',
     execute(message, args) {
-        if(isThereCompetition == false) {
-            isThereCompetition = true
+        if(functions.isThereCompetition == false) {
+            functions.isThereCompetition = true
             competition.length = 0
+
+            fs.writeFile('./competition.json', JSON.stringify(competition), err => {
+                if (err) console.error(err);
+            });
 
             const embed = new Discord.MessageEmbed()
             .setColor('#00ff00')
