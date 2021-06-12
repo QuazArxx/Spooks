@@ -56,15 +56,15 @@ client.on('message', message => {
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases == commandName);
-
+	
+	if (!command) return;
+	
 	if (command.permissions) {
 		const authorPerms = message.channel.permissionsFor(message.author);
 		if (!authorPerms || !authorPerms.has(command.permissions)) {
 			return message.reply('You can not do this!');
 		}
 	}
-	
-	if (!command) return;
 
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!');
