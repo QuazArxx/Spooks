@@ -1,3 +1,4 @@
 module.exports = {
-    isThereCompetition: false
+    isThereCompetition: false,
+    areEntriesAllowed: false
 }

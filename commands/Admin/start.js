@@ -11,6 +11,7 @@ module.exports = {
     execute(message, args) {
         if(functions.isThereCompetition == false) {
             functions.isThereCompetition = true
+            functions.areEntriesAllowed = true
             competition.length = 0
 
             fs.writeFile('./competition.json', JSON.stringify(competition), err => {
