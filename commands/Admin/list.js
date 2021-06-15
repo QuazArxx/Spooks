@@ -14,6 +14,7 @@ module.exports = {
             return message.channel.send(embed)
         }
 
+        //TODO change the display to go along with the array of objects
         const embed = new Discord.MessageEmbed()
         .setColor('#000000')
         .setTitle('__Phasmo Competitors:__')

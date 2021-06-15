@@ -7,6 +7,8 @@ const functions = require('../../functions')
 module.exports = {
     name: 'enter',
     execute(message, args) {
+
+        //TODO add an array of objects for each user that enters the competition with username and ID
         if (functions.isThereCompetition) {
             if (competition.includes(message.author.username)) {
                 const embed = new Discord.MessageEmbed()
