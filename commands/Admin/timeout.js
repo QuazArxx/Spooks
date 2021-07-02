@@ -12,7 +12,9 @@ module.exports = {
             if (message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')
             else return
         }
-
+        
+        let channel = message.guild.channels.cache.get('842466744160223253')
+        
         if (!message.mentions.users.size) return message.channel.send('You forgot to mention someone!')
 
         let target = message.mentions.users.first()
@@ -37,7 +39,6 @@ module.exports = {
                         message.guild.members.cache.get(target.id).roles.cache.filter(r => r.id != '830293335611801646').forEach(role => phasMembers[x].roles.push(role.id))
                     }  
                 }
-                
             }
 
             fs.writeFile('./members.json', JSON.stringify(phasMembers), err => {
@@ -48,6 +49,14 @@ module.exports = {
             await message.guild.members.cache.get(target.id).roles.set([])
             await message.guild.members.cache.get(target.id).roles.add('842463222446817370')
 
+            try {
+                if (target.id == '373641434798227488') {
+                    channel.updateOverwrite(target, {SEND_MESSAGES: false})
+                }
+            } catch (err) {
+                console.error(err)
+            }
+            
             await message.channel.send(`${target.username} was put in timeout!`)
         } else if (this.isInTimeout(target) == true) {
             for (let x = 0; x < phasMembers.length; x++) {
@@ -65,8 +74,8 @@ module.exports = {
                 if (err) console.error(err);
             });
 
-            message.guild.members.cache.get(target.id).roles.remove('842463222446817370')
-            message.channel.send(`${target.username} is no longer in timeout. FREEDOM!`)
+            await message.guild.members.cache.get(target.id).roles.remove('842463222446817370')
+            await message.channel.send(`${target.username} is no longer in timeout. FREEDOM!`)
         }
     },
 
