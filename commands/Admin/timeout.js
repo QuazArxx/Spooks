@@ -6,6 +6,7 @@ module.exports = {
     name: 'timeout',
     description: 'Puts the person in timeout',
     aliases: 'to',
+    permissions: 'ADMINISTRATOR',
     async execute(message, args){
         // Only Lexi can use this command
         if (!(message.author.id == '771120373940224000')) {
