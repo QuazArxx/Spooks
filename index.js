@@ -29,14 +29,20 @@ client.once('ready', () => {
 	console.log(`${client.user.username} is online!`);
 });
 
-client.on('guildMemberAdd', member => {
-	let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
-
+client.on('guildMemberAdd', async member => {
 	const embed = new Discord.MessageEmbed()
+	.setColor('#000000')
+	.setTitle('Formal welcome to the Phasquad server! I bet you were forced to join by these chucklefucks. Well you\'ll have a riveting time here. All we ask is that you read the rules and use the server for its intended purposes: grouping up. If you don\'t play or talk, we\'ll kick ya. Have fun!')
+
+	member.send(embed)
+
+	async let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
+
+	const welcomeEmbed = new Discord.MessageEmbed()
 	.setColor('#000000')
 	.setTitle(`Hey ${member.user.username} ${randomMessage}`)
 
-	member.guild.channels.cache.get('830293335611801649').send(embed);
+	member.guild.channels.cache.get('830293335611801649').send(welcomeEmbed);
 })
 
 // This is the start of the main function when the bot is turned on
