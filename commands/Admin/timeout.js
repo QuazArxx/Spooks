@@ -19,7 +19,7 @@ module.exports = {
         if (!message.mentions.users.size) return message.channel.send('You forgot to mention someone!')
 
         let target = message.mentions.users.first()
-
+        
         // Pushes information of mentioned user if they're not already on the list
         if (!phasMembers.some(user => user.id === target.id)) {
             phasMembers.push({
@@ -45,6 +45,10 @@ module.exports = {
             fs.writeFile('./members.json', JSON.stringify(phasMembers), err => {
                 if (err) console.error(err);
             });
+
+            if (message.guild.members.cache.get(target.id).voice.channel) {
+                message.guild.members.cache.get(target.id).voice.setChannel(null)
+            }
 
             // Remove all roles and add timeout role
             await message.guild.members.cache.get(target.id).roles.set([])
