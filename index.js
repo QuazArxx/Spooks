@@ -36,7 +36,7 @@ client.on('guildMemberAdd', async member => {
 
 	member.send(embed)
 
-	async let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
+	let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
 
 	const welcomeEmbed = new Discord.MessageEmbed()
 	.setColor('#000000')
