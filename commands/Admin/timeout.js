@@ -14,7 +14,8 @@ module.exports = {
             else return
         }
         
-        let channel = message.guild.channels.cache.get('842466744160223253')
+        const timeoutChannel = message.guild.channels.cache.get('842466744160223253')
+        const anythingChannel = message.guild.channels.cache.get('840275450207272990')
         
         if (!message.mentions.users.size) return message.channel.send('You forgot to mention someone!')
 
@@ -50,6 +51,7 @@ module.exports = {
             await message.guild.members.cache.get(target.id).roles.set([])
             await message.guild.members.cache.get(target.id).roles.add('842463222446817370')
 
+            // Change Send Messages for Saucy to false
             try {
                 if (target.id == '373641434798227488') {
                     channel.updateOverwrite(target, {SEND_MESSAGES: false})
@@ -58,7 +60,10 @@ module.exports = {
                 console.error(err)
             }
             
+            // Send confirmation messages
             await message.channel.send(`${target.username} was put in timeout!`)
+            await timeoutChannel.send(`What did you do now, ${target.username}?`)
+            
         } else if (this.isInTimeout(target) == true) {
             for (let x = 0; x < phasMembers.length; x++) {
                 if (phasMembers[x].id == target.id) {
@@ -75,11 +80,14 @@ module.exports = {
                 if (err) console.error(err);
             });
 
+            // Send confirmation messages
             await message.guild.members.cache.get(target.id).roles.remove('842463222446817370')
             await message.channel.send(`${target.username} is no longer in timeout. FREEDOM!`)
+            await anythingChannel.send(`${target.username} has been let out of timeout for good behavior. Or because Alcoholic Stepdaddy is too nice sometimes.`)
         }
     },
 
+    // Checks if the target is already in timeout or not
     isInTimeout: function(target) {
         for (let x = 0; x < phasMembers.length; x++) {
             if (phasMembers[x].id == target.id) {
