@@ -47,6 +47,11 @@ module.exports = {
                 if (err) console.error(err);
             });
 
+            // Checks if user is in a voice channel and removes them if they are
+            if (message.guild.members.cache.get(target.id).voice.channel) {
+                message.guild.members.cache.get(target.id).voice.setChannel(null)
+            }
+
             // Remove all roles and add timeout role
             await message.guild.members.cache.get(target.id).roles.set([])
             await message.guild.members.cache.get(target.id).roles.add('842463222446817370')
