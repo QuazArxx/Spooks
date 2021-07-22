@@ -11,7 +11,7 @@ const hour = 1000 * 60 * 60;
 const day = 1000 * 60 * 60 * 24;
 
 // Declares the client and the commands for the handler
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 client.commands = new Discord.Collection();
 
 const folders = fs.readdirSync('./commands'); // read the directory of folders
@@ -30,19 +30,39 @@ client.once('ready', () => {
 });
 
 client.on('guildMemberAdd', async member => {
+	member.roles.add('867578765085507636')
+
 	const embed = new Discord.MessageEmbed()
 	.setColor('#000000')
 	.setTitle('Formal welcome to the Phasquad server! I bet you were forced to join by these chucklefucks. Well you\'ll have a riveting time here. All we ask is that you read the rules and use the server for its intended purposes: grouping up. If you don\'t play or talk, we\'ll kick ya. Have fun!')
 
-	member.send(embed)
+	await member.send(embed)
 
-	let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
 
-	const welcomeEmbed = new Discord.MessageEmbed()
-	.setColor('#000000')
-	.setTitle(`Hey ${member.user.username} ${randomMessage}`)
+})
 
-	member.guild.channels.cache.get('830293335611801649').send(welcomeEmbed);
+client.on('messageReactionAdd', async (reaction, user) => {
+	if (reaction.message.partial) await reaction.message.fetch();
+	if (reaction.partial) await reaction.fetch();
+
+	if (user.bot) return;
+	if (!reaction.message.guild) return;
+
+	if (reaction.message.channel.id == '843181553772396588') {
+		if (reaction.emoji.name == '✅') {
+			if (reaction.message.guild.members.cache.get(user.id).roles.cache.get('867578765085507636')) {
+				await reaction.message.guild.members.cache.get(user.id).roles.remove('867578765085507636')
+
+				let randomMessage = welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]
+
+				const welcomeEmbed = new Discord.MessageEmbed()
+				.setColor('#000000')
+				.setTitle(`Hey ${user.username} ${randomMessage}`)
+			
+				await client.channels.cache.get('830293335611801649').send(welcomeEmbed);
+			}
+		}
+	}
 })
 
 // This is the start of the main function when the bot is turned on
