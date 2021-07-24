@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const functions = require('../../functions')
 
 module.exports = {
-    name: 'stop',
+    name: 'stopentry',
     description: 'stops further entrants to the competition',
     permissions: 'ADMINISTRATOR',
     execute(message, args) {
