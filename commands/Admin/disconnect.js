@@ -6,7 +6,7 @@ module.exports = {
     name: 'disconnect',
     description: 'forces the bot to leave the voice channel',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    async execute(message, args) {
         const connection = message.member.voice.channel
         serverQueue = queue.get(message.guild.id)
 
@@ -15,5 +15,11 @@ module.exports = {
             serverQueue.connection.dispatcher.end()
         }
         connection.leave()
+
+        const embed = new Discord.MessageEmbed()
+        .setColor(colors.green)
+        .setTitle('Bot successfully left the voice channel.')
+        
+        await message.channel.send(embed)
     }
 }
