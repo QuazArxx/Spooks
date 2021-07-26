@@ -1,7 +1,9 @@
 const ytdl = require('ytdl-core')
 const ytSearch = require('yt-search')
+const Discord = require('discord.js')
 
 const { queue } = require('../../functions')
+const colors = require('../../colors.json')
 module.exports = {
     name: 'play',
     description: 'Adds a song to the queue.',
@@ -28,7 +30,11 @@ module.exports = {
             if (video) {
                 song = {title: video.title, url: video.url}
             } else {
-                message.channel.send('Error finding video')
+                const errorEmbed = new Discord.MessageEmbed()
+                .setColor(colors.red)
+                .setTitle('Error finding video')
+
+                message.channel.send(errorEmbed)
             }
         }
 
@@ -53,7 +59,12 @@ module.exports = {
             }
         } else {
             serverQueue.songs.push(song)
-            message.channel.send(`**${song.title}** was added to the queue!`)
+
+            const added = new Discord.MessageEmbed()
+            .setColor(colors.green)
+            .setTitle(`**${song.title}** was added to the queue!`)
+
+            message.channel.send(added)
         }
     }
 }
@@ -72,5 +83,10 @@ const videoPlayer = async (guild, song) => {
         songQueue.songs.shift()
         videoPlayer(guild, songQueue.songs[0])
     })
-    await songQueue.textChannel.send(`Now Playing: **${song.title}** `)
+
+    const nowPlaying = new Discord.MessageEmbed()
+    .setColor(colors.green)
+    .setTitle(`Now Playing: **${song.title}**`)
+
+    await songQueue.textChannel.send(nowPlaying)
 }
