@@ -11,7 +11,9 @@ module.exports = {
         serverQueue = queue.get(message.guild.id)
 
         serverQueue.songs = []
+        if (!serverQueue.connection.dispatcher == null) {
+            serverQueue.connection.dispatcher.end()
+        }
         connection.leave()
-        serverQueue.connection.dispatcher.end()
     }
 }
