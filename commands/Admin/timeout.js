@@ -59,7 +59,7 @@ module.exports = {
             // Change Send Messages for Saucy to false
             try {
                 if (target.id == '373641434798227488') {
-                    channel.updateOverwrite(target, {SEND_MESSAGES: false})
+                    timeoutChannel.updateOverwrite(target, {SEND_MESSAGES: false, ADD_REACTION: false})
                 }
             } catch (err) {
                 console.error(err)
