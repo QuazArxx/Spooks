@@ -3,3 +3,4 @@ config.json
 members.json
 competition.json
 .DS_Store
+/.vs
