@@ -16,7 +16,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('You need to enter in the name of the ghost to add.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         let short;
@@ -37,6 +37,6 @@ module.exports = {
         .setColor('#00ff00')
         .setTitle('Ghost added successfully!')
 
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
     }
 }

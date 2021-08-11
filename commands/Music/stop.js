@@ -16,7 +16,7 @@ const stopSong = async (message, serverQueue) => {
         .setColor(colors.red)
         .setTitle('There are no songs in the queue!')
 
-        return message.channel.send(embed)
+        return message.channel.send({ embeds: [embed] })
     }
 
     serverQueue.songs = []
@@ -26,5 +26,5 @@ const stopSong = async (message, serverQueue) => {
     .setColor(colors.yellow)
     .setTitle('Playing stopped. Use !play to queue more songs.')
 
-    await message.channel.send(embed)
+    await message.channel.send({ embeds: [embed] })
 }

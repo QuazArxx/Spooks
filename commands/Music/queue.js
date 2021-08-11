@@ -11,7 +11,7 @@ module.exports = {
             .setColor(colors.red)
             .setTitle('You can\'t queue up nothing!')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
     }
 }

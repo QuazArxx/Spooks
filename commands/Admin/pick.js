@@ -16,7 +16,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('There is no current competition or you haven\'t stopped new entries.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         args = message.content.slice(prefix.length).split(' ');
@@ -33,7 +33,7 @@ module.exports = {
                     {name: `1. ${competition[0].name}`, value: '\u200B'}
                 )
                 
-                return message.channel.send(embed)
+                return message.channel.send({ embeds: [embed] })
             }
         }
     }

@@ -11,7 +11,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('List is empty.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         //TODO change the display to go along with the array of objects
@@ -20,6 +20,6 @@ module.exports = {
         .setTitle('__Phasmo Competitors:__')
         .addField(competition.join(', '), '\u200B')
 
-        await message.channel.send(embed)
+        await message.channel.send({ embeds: [embed] })
     }
 }

@@ -13,7 +13,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('Either there is no competition to leave, or you haven\'t entered yet.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         for (let x = 0; x < competition.length; x++) {
@@ -29,7 +29,7 @@ module.exports = {
                 .setColor('#00ff00')
                 .setTitle('You have left the competition queue.')
 
-                return message.channel.send(embed)
+                return message.channel.send({ embeds: [embed] })
             }
         }
     }

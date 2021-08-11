@@ -19,7 +19,7 @@ module.exports = {
             .setTitle('__Phasmophobia Wiki__')
             .addField('https://phasmophobia.fandom.com/wiki/Main_Page', '\u200B')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         } else if (args[1] == 'shortcuts') {
             let ghostShortcuts = []
             let equipShortcuts = []
@@ -43,7 +43,7 @@ module.exports = {
                 {name: 'Equipment:', value: equipShortcuts.join(', ')}
             )
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         // Sets argument to lowercase
@@ -80,14 +80,14 @@ module.exports = {
                 .setTitle(`__Phasmophobia Wiki: ${this.ghost}__`)
                 .addField(`https://phasmophobia.fandom.com/wiki/${this.ghost}`, '*Also, according to Quaz, it\'s the only ghost that will kill you through a door.*')
 
-                return message.channel.send(embed)
+                return message.channel.send({ embeds: [embed] })
             } else {
                 const embed = new Discord.MessageEmbed()
                 .setColor('#000000')
                 .setTitle(`__Phasmophobia Wiki: ${this.ghost}__`)
                 .addField(`https://phasmophobia.fandom.com/wiki/${this.ghost}`, '\u200B')
 
-                return message.channel.send(embed)
+                return message.channel.send({ embeds: [embed] })
             }
         } else if (!(this.tool == '')) {
             const embed = new Discord.MessageEmbed()
@@ -95,7 +95,7 @@ module.exports = {
             .setTitle(`__Phasmophobia Wiki: ${this.tool}__`)
             .addField(`https://phasmophobia.fandom.com/wiki/${this.tool}`, '\u200B')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         // Error message if they didn't type something on any list
@@ -103,6 +103,6 @@ module.exports = {
         .setColor('#ff0000')
         .setTitle('Please check the spelling of the ghost or equipment you entered.\n\nType "!wiki shortcuts" for a list of shortened words you can use.')
 
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
     }
 }

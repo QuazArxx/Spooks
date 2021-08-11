@@ -12,7 +12,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('Either there is no competition or entries have been closed.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         competition.push({
@@ -31,6 +31,6 @@ module.exports = {
             if (err) console.error(err);
         });
 
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
     }
 }

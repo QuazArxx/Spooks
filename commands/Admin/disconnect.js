@@ -20,6 +20,6 @@ module.exports = {
         .setColor(colors.green)
         .setTitle('Bot successfully left the voice channel.')
         
-        await message.channel.send(embed)
+        await message.channel.send({ embeds: [embed] })
     }
 }

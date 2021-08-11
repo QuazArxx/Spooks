@@ -2,6 +2,10 @@ const ytdl = require('ytdl-core')
 const ytSearch = require('yt-search')
 const Discord = require('discord.js')
 
+const { joinVoiceChannel } = require('@discordjs/voice');
+
+
+
 const { queue } = require('../../functions')
 const colors = require('../../colors.json')
 module.exports = {
@@ -13,6 +17,7 @@ module.exports = {
             return message.channel.send('You must be in a voice channel first!')
         }
 
+        if (!args[0]) return message.channel.send('You need to put in a search term!')
         const serverQueue = queue.get(message.guild.id)
 
         let song = {}
@@ -50,7 +55,11 @@ module.exports = {
             queueConstructor.songs.push(song)
 
             try {
-                const connection = await message.member.voice.channel.join()
+                const connection = joinVoiceChannel({
+                    channelId: message.member.voice.channel.id,
+                    guildId: message.member.voice.channel.guild.id,
+                    adapterCreator: message.member.voice.channel.guild.voiceAdapterCreator,
+                });
                 queueConstructor.connection = connection
                 videoPlayer(message.guild, queueConstructor.songs[0])
             } catch (err) {

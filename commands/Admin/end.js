@@ -14,7 +14,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('There is no competition going on.')
             
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
 
         functions.isThereCompetition = false
@@ -36,6 +36,6 @@ module.exports = {
         .setColor('#00ff00')
         .setTitle('The competition has officially ended.')
 
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
     }
 }

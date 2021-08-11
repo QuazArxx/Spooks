@@ -14,7 +14,7 @@ module.exports = {
             .setColor('#00ff00')
             .setTitle('No more entries will be allowed.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         } else if (functions.isThereCompetition == false) {
             const embed = new Discord.MessageEmbed()
             .setColor('#ff0000')
@@ -24,7 +24,7 @@ module.exports = {
             .setColor('#ff0000')
             .setTitle('Entries have already been stopped.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
     }
 }

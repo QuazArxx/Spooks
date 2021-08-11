@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args){
         // Only Lexi can use this command
         if (!(message.author.id == '771120373940224000')) {
-            if (message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')
+            if (message.member.permissions.has('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')
             else return
         }
         
@@ -56,10 +56,10 @@ module.exports = {
             await message.guild.members.cache.get(target.id).roles.set([])
             await message.guild.members.cache.get(target.id).roles.add('842463222446817370')
 
-            // Change Send Messages for Saucy to false
+            // Change Send Messages for Me to false
             try {
-                if (target.id == '373641434798227488') {
-                    timeoutChannel.updateOverwrite(target, {SEND_MESSAGES: false, ADD_REACTION: false})
+                if ((target.id == '387959359394807808') || target.id == '373641434798227488') {
+                    timeoutChannel.permissionOverwrites.edit(target, {SEND_MESSAGES: false})
                 }
             } catch (err) {
                 console.error(err)

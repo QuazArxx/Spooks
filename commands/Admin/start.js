@@ -23,13 +23,13 @@ module.exports = {
             .setColor('#00ff00')
             .setTitle('A competition has been started!')
     
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         } else {
             const embed = new Discord.MessageEmbed()
             .setColor('#ff0000')
             .setTitle('There is already a competition in progress.')
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [embed] })
         }
     }
 }

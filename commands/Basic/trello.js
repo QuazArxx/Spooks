@@ -10,6 +10,6 @@ module.exports = {
         .setTitle('__Phasmophobia Trello Board__')
         .addField('https://trello.com/b/9QrnqQ1j/phasmophobia', '\u200B')
 
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
     }
 }
