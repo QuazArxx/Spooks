@@ -14,11 +14,15 @@ module.exports = {
             return message.channel.send({ embeds: [embed] })
         }
 
-        //TODO change the display to go along with the array of objects
+        let competitors = ''
+        for (let x = 0; x < competition.length; x++) {
+            competitors += competition[x].object.displayName + '\n'
+        }
+        
         const embed = new Discord.MessageEmbed()
         .setColor('#000000')
         .setTitle('__Phasmo Competitors:__')
-        .addField(competition.join(', '), '\u200B')
+        .addField(competitors, '\u200B')
 
         await message.channel.send({ embeds: [embed] })
     }
