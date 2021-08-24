@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 
 const competition = require('../../competition.json')
+const colors = require('../../colors.json')
 
 module.exports = {
     name: 'list',
@@ -8,22 +9,32 @@ module.exports = {
     async execute(message, args) {
         if (competition.length == 0) {
             const embed = new Discord.MessageEmbed()
-            .setColor('#ff0000')
+            .setColor(colors.red)
             .setTitle('List is empty.')
 
             return message.channel.send({ embeds: [embed] })
         }
 
         let competitors = ''
+        let competitors1 = ''
         for (let x = 0; x < competition.length; x++) {
-            competitors += competition[x].object.displayName + '\n'
+            if (x <= competition.length / 2) {
+                competitors += `${x + 1}. ${competition[x].object.displayName}\n`
+            } else if (x > competition.length / 2) {
+                competitors1 += `${x + 1}. ${competition[x].object.displayName}\n`
+            }
         }
         
         const embed = new Discord.MessageEmbed()
-        .setColor('#000000')
-        .setTitle('__Phasmo Competitors:__')
+        .setColor(colors.black)
+        .setTitle(`__Phasmo Competitors:__ ${competition.length}`)
         .addField(competitors, '\u200B')
 
-        await message.channel.send({ embeds: [embed] })
+        const embed1 = new Discord.MessageEmbed()
+        .setColor(colors.black)
+        .setTitle('__Phasmo Competitors Cont.__')
+        .addField(competitors1, '\u200B')
+
+        await message.channel.send({ embeds: [embed, embed1] })
     }
 }
