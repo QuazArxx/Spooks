@@ -12,9 +12,7 @@ module.exports = {
         if(functions.isThereCompetition == false) {
             functions.isThereCompetition = true
             functions.areEntriesAllowed = true
-            competition.length = 0
 
-            // TODO remove setting competition array to 0
             fs.writeFile('./competition.json', JSON.stringify(competition), err => {
                 if (err) console.error(err);
             });
