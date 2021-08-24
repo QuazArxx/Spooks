@@ -3,6 +3,7 @@ const Discord = require('discord.js')
 
 const competition = require('../../competition.json')
 const functions = require('../../functions')
+const colors = require('../../colors.json')
 
 module.exports = {
     name: 'leave',
@@ -10,7 +11,7 @@ module.exports = {
     execute(message, args) {
         if (functions.isThereCompetition == false || !(competition.some(user => user.id == message.author.id))) {
             const embed = new Discord.MessageEmbed()
-            .setColor('#ff0000')
+            .setColor(colors.red)
             .setTitle('Either there is no competition to leave, or you haven\'t entered yet.')
 
             return message.channel.send({ embeds: [embed] })
@@ -26,7 +27,7 @@ module.exports = {
                 });
 
                 const embed = new Discord.MessageEmbed()
-                .setColor('#00ff00')
+                .setColor(colors.green)
                 .setTitle('You have left the competition queue.')
 
                 return message.channel.send({ embeds: [embed] })
