@@ -26,6 +26,7 @@ module.exports = {
             name: message.author.username,
             id: message.author.id,
             isCaptain: false,
+            isOnTeam: false,
             object: message.member
         })
 
