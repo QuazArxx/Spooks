@@ -19,7 +19,7 @@ module.exports = {
         let competitors1 = ''
         let counter = 1
         for (let x = 0; x < competition.length; x++) {
-            if (!competition[x].isCaptain) {
+            if (args[0] == 'full') {
                 if (x <= competition.length / 2) {
                     competitors += `${counter}. ${competition[x].object.displayName}\n`
                     counter++
@@ -27,7 +27,18 @@ module.exports = {
                     competitors1 += `${counter}. ${competition[x].object.displayName}\n`
                     counter++
                 }
+            } else {
+                if (!competition[x].isCaptain && !competition[x].isOnTeam) {
+                    if (x <= competition.length / 2) {
+                        competitors += `${counter}. ${competition[x].object.displayName}\n`
+                        counter++
+                    } else if (x > competition.length / 2) {
+                        competitors1 += `${counter}. ${competition[x].object.displayName}\n`
+                        counter++
+                    }
+                }
             }
+            
         }
         
         const embed = new Discord.MessageEmbed()
