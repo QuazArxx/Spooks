@@ -1,2 +1,4 @@
 Have the bot allow Saucy, Lexi, and I to pick teams that will give them the team role
-    Thinking embed with emojis to react to
+    Finish random command to put random competitors on each team
+    Finish adjustments on pick command to pick teams off list of non captains
+    Adjust list command to show full list when arg is used ✅
