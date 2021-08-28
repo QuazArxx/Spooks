@@ -11,7 +11,7 @@ module.exports = {
         if (!args[0] || isNaN(args[0]) || args[0] < 1 || args[0] > competition.length) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)
-            .setTitle(`Please pick a number 1-${competition.length} that corresponds to the player you want to remove using !list.`)
+            .setTitle(`Please pick a number 1-${competition.length} that corresponds to the player you want to remove using "!list full".`)
     
             return message.channel.send({embeds: [embed]})
         }
