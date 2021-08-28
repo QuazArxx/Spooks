@@ -18,10 +18,12 @@ module.exports = {
         let competitors = ''
         let competitors1 = ''
         for (let x = 0; x < competition.length; x++) {
-            if (x <= competition.length / 2) {
-                competitors += `${x + 1}. ${competition[x].object.displayName}\n`
-            } else if (x > competition.length / 2) {
-                competitors1 += `${x + 1}. ${competition[x].object.displayName}\n`
+            if (!competition[x].isCaptain) {
+                if (x <= competition.length / 2) {
+                    competitors += `${x + 1}. ${competition[x].object.displayName}\n`
+                } else if (x > competition.length / 2) {
+                    competitors1 += `${x + 1}. ${competition[x].object.displayName}\n`
+                }
             }
         }
         
