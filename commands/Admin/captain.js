@@ -33,7 +33,7 @@ module.exports = {
 
             return message.channel.send({ embeds: [embed] })
         } else if (!(teams.some(user => user.captainId == target.id)) && args[1]) {
-            const targetDisplayName
+            const targetDisplayName = ''
 
             for (let x = 0; x < competition.length; x++) {
                 if (competition[x].id == target.id) {
