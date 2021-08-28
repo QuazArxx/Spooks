@@ -4,11 +4,12 @@ const Discord = require('discord.js')
 
 const colors = require('../../colors.json')
 const competition = require('../../competition.json')
+const teams = require('../../teams.json')
 module.exports = {
     name: 'captain',
     Description: 'Adds the captain role to captains',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    async execute(message, args) {
         if (!message.mentions.users.size) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)
@@ -22,11 +23,38 @@ module.exports = {
 
             return message.channel.send({ embeds: [embed] })
         }
+        
+        target = message.mentions.users.first()
+
+        if (!(teams.some(user => user.captainId == target.id)) && !args[1]) {
+            const embed = new Discord.MessageEmbed()
+            .setColor(colors.red)
+            .setTitle('You forgot to mention their team role!')
+
+            return message.channel.send({ embeds: [embed] })
+        } else if (!(teams.some(user => user.captainId == target.id)) && args[1]) {
+            const targetDisplayName
+
+            for (let x = 0; x < competition.length; x++) {
+                if (competition[x].id == target.id) {
+                    targetDisplayName = competition[x].object.displayName
+                }
+            }
+
+            teams.push({
+                captainName: targetDisplayName,
+                captainId: target.id,
+                roleID: this.getRoleFromMention(args[1]),
+                team: []
+            })
+        }
 
         for (let x = 0; x < competition.length; x++) {
             if (competition[x].id == message.mentions.users.first().id) {
                 competition[x].isCaptain = true;
                 // add captain role to mentioned user
+                await message.guild.members.cache.get(message.mentions.users.first().id).roles.add('877613773345681478')
+
 
                 const embed = new Discord.MessageEmbed()
                 .setColor(colors.green)
@@ -34,6 +62,16 @@ module.exports = {
 
                 return message.channel.send({ embeds: [embed] })
             }
+        }
+    },
+
+    getRoleFromMention: function (mention) {
+        if (!mention) return;
+    
+        if (mention.startsWith('<@&') && mention.endsWith('>')) {
+            mention = mention.slice(3, -1);
+    
+            return mention;
         }
     }
 }
