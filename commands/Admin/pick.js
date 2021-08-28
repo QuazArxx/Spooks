@@ -1,40 +1,31 @@
+const fs = require('fs')
 const Discord = require('discord.js')
 
+const colors = require('../../colors.json')
 const competition = require('../../competition.json')
+const teams = require('../../teams.json')
 const functions = require('../../functions')
-const { prefix } = require('../../config.json')
-
-let used = false
 
 module.exports = {
     name: 'pick',
     description: 'Lets captains pick team members',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
-        if (functions.isThereCompetition == false || functions.areEntriesAllowed == true) {
+    async execute(message, args) {
+        if (!functions.isThereCompetition) {
             const embed = new Discord.MessageEmbed()
-            .setColor('#ff0000')
-            .setTitle('There is no current competition or you haven\'t stopped new entries.')
+            .setColor(colors.red)
+            .setTitle('There is no current competition!')
+
+            return message.channel.send({ embeds: [embed] })
+        } else if (!args[0]) {
+            const embed = new Discord.MessageEmbed()
+            .setColor(colors.red)
+            .setTitle('You need to pick a player to add to your team!')
 
             return message.channel.send({ embeds: [embed] })
         }
-
-        args = message.content.slice(prefix.length).split(' ');
-
-        if (!args[1]) {
-            if (used) return
-            else {
-                used = true
-                
-                const embed = new Discord.MessageEmbed()
-                .setColor('#000000')
-                .setTitle(`__Players in Competition__ - Type "${prefix}pick #" to add a player to your team`)
-                .addFields(
-                    {name: `1. ${competition[0].name}`, value: '\u200B'}
-                )
-                
-                return message.channel.send({ embeds: [embed] })
-            }
-        }
+        // Remove player from list
+            // Change bool variable to true
+        // Push chosen player to author's team array
     }
 }
