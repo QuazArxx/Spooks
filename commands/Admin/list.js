@@ -17,12 +17,15 @@ module.exports = {
 
         let competitors = ''
         let competitors1 = ''
+        let counter = 1
         for (let x = 0; x < competition.length; x++) {
             if (!competition[x].isCaptain) {
                 if (x <= competition.length / 2) {
-                    competitors += `${x + 1}. ${competition[x].object.displayName}\n`
+                    competitors += `${counter}. ${competition[x].object.displayName}\n`
+                    counter++
                 } else if (x > competition.length / 2) {
-                    competitors1 += `${x + 1}. ${competition[x].object.displayName}\n`
+                    competitors1 += `${counter}. ${competition[x].object.displayName}\n`
+                    counter++
                 }
             }
         }
