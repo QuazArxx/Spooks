@@ -2,3 +2,7 @@ Have the bot allow Saucy, Lexi, and I to pick teams that will give them the team
     Finish random command to put random competitors on each team
     Finish adjustments on pick command to pick teams off list of non captains
     Adjust list command to show full list when arg is used ✅
+
+Fix list command to only send multiple embeds depending on amount of competitors
+
+Make an openentry command to be able to allow more players to join the competition if we decide to allow more
