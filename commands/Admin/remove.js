@@ -18,7 +18,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setColor(colors.green)
-        .setTitle(`${competition[args[0]-1].name} was removed successfully!`)
+        .setTitle(`${competition[args[0]-1].object.displayName} was removed successfully!`)
 
         message.channel.send({embeds: [embed]})
         
