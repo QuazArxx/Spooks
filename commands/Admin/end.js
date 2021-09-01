@@ -21,7 +21,7 @@ module.exports = {
 
         // Remove competitor role from participants
         for (let x = 0; x < competition.length; x++) {
-            competition[x].object.roles.remove('853046476309528607')
+            message.guild.members.cache.get(competition[x].object.userId).roles.remove('775547730901729330')
         }
         
         // Set the competition array to empty
@@ -36,6 +36,6 @@ module.exports = {
         .setColor('#00ff00')
         .setTitle('The competition has officially ended.')
 
-        message.channel.send({ embeds: [embed] })
+        await message.channel.send({ embeds: [embed] })
     }
 }
