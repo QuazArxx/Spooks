@@ -24,8 +24,10 @@ module.exports = {
 
             return message.channel.send({ embeds: [embed] })
         }
-        // Remove player from list
-            // Change bool variable to true
+        // Search through list for the player picked and get their display name
+        // Add them to player picked array
+        functions.playersPicked.push()
         // Push chosen player to author's team array
+        // Add team role after ALL players are picked
     }
 }
