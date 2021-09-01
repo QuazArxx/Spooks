@@ -1,8 +1,12 @@
 Have the bot allow Saucy, Lexi, and I to pick teams that will give them the team role
-    Finish random command to put random competitors on each team
-    Finish adjustments on pick command to pick teams off list of non captains
-    Adjust list command to show full list when arg is used ✅
+    Finish !random command to put random competitors on each team
+    Finish adjustments on !pick command to pick teams off list of non captains
+    Adjust !list command to show full list when arg is used ✅
 
-Fix list command to only send multiple embeds depending on amount of competitors
+Fix !list command to only send multiple embeds depending on amount of competitors
 
-Make an openentry command to be able to allow more players to join the competition if we decide to allow more
+Make an !openentry command to be able to allow more players to join the competition if we decide to allow more
+
+Fix !end command to remove captain roles and team roles
+
+Make an !addcomp command to allow one of us to add a specific person to the competition
