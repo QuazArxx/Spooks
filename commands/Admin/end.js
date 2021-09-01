@@ -9,21 +9,29 @@ module.exports = {
     description: 'Ends the current competition and removes the competitor role from all participants.',
     permissions: 'ADMINISTRATOR',
     async execute(message, args) {
-        if (functions.isThereCompetition == false) {
+        /*if (functions.isThereCompetition == false) {
             const embed = new Discord.MessageEmbed()
             .setColor('#ff0000')
             .setTitle('There is no competition going on.')
             
             return message.channel.send({ embeds: [embed] })
-        }
+        }*/
 
         functions.isThereCompetition = false
 
         // Remove competitor role from participants
         for (let x = 0; x < competition.length; x++) {
-            message.guild.members.cache.get(competition[x].object.userId).roles.remove('775547730901729330')
+            try {
+                if (typeof message.guild.members.cache.get(competition[x].id) == 'undefined') {
+                    console.log(competition[x].object.displayName)
+                }
+            } catch (err) {
+                console.error(err)
+                return console.log(competition[x].object.displayName)
+            }
         }
-        
+        return
+
         // Set the competition array to empty
         competition.length = 0
 
