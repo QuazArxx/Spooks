@@ -57,5 +57,6 @@ module.exports = {
             await message.channel.send({ embeds: [embed] })
         }
         
+        // Use an array instead and set addFields to be each element. Maybe only take up to 5 players at a time to add to the message. Maybe done in For loop
     }
 }
