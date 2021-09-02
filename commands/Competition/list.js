@@ -26,6 +26,7 @@ module.exports = {
                     counter++
                 } else if (x > functions.playersPicked.length / 2) {
                     competitors1 += `${counter}. ${functions.playersPicked[x]}\n`
+                    counter++
                 }
             } else {
                 if (x <= competition.length / 2) {
@@ -39,6 +40,7 @@ module.exports = {
             
         }
         
+        // ADJUST EMBEDS FOR PICKED AND MAKE THEM DYNAMIC ** Use For loop (Check !start)
         const embed = new Discord.MessageEmbed()
         .setColor(colors.black)
         .setTitle(`__Phasmo Competitors:__ ${competition.length}`)

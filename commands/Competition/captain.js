@@ -44,10 +44,14 @@ module.exports = {
             teams.push({
                 captainName: targetDisplayName,
                 captainId: target.id,
-                roleID: this.getRoleFromMention(args[1]),
+                roleId: this.getRoleFromMention(args[1]),
                 team: []
             })
         }
+
+        fs.writeFile('./teams.json', JSON.stringify(teams), err => {
+            if (err) console.error(err);
+        });
 
         for (let x = 0; x < competition.length; x++) {
             if (competition[x].id == message.mentions.users.first().id) {

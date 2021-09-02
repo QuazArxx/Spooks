@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
 
 const functions = require('../../functions')
+const colors = require('../../colors.json')
 
 module.exports = {
-    name: 'stopentry',
+    name: 'closeentry',
     description: 'stops further entrants to the competition',
     permissions: 'ADMINISTRATOR',
     execute(message, args) {
@@ -11,17 +12,17 @@ module.exports = {
             functions.areEntriesAllowed = false
 
             const embed = new Discord.MessageEmbed()
-            .setColor('#00ff00')
+            .setColor(colors.green)
             .setTitle('No more entries will be allowed.')
 
             return message.channel.send({ embeds: [embed] })
         } else if (functions.isThereCompetition == false) {
             const embed = new Discord.MessageEmbed()
-            .setColor('#ff0000')
+            .setColor(colors.red)
             .setTitle('There is no current competition happening.')
         } else {
             const embed = new Discord.MessageEmbed()
-            .setColor('#ff0000')
+            .setColor(colors.red)
             .setTitle('Entries have already been stopped.')
 
             return message.channel.send({ embeds: [embed] })
