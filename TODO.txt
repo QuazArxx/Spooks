@@ -10,7 +10,7 @@ Fix !list command to only send multiple embeds depending on amount of competitor
 
 Make an !openentry command to be able to allow more players to join the competition if we decide to allow more ✅
     Change !start command to !openentry and use !start to add team roles and send message of teams ✅
-        Send a message to everyone before sending the team list
+        Send a message to everyone before sending the team list ✅
 
 Fix !end command to remove captain roles and team roles ✅
 
