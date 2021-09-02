@@ -28,6 +28,8 @@ module.exports = {
         }
 
         // ADD @EVERYONE BEFORE SENDING TEAMS
+        await message.guild.channels.get('849701097106440203').send('@everyone')
+
         for (let x = 0; x < teams.length; x++) {
             let players = []
 
@@ -44,7 +46,7 @@ module.exports = {
                 {name: players[2], value: '\u200B'}
             )
 
-            message.guild.channels.get('849701097106440203').send({ embeds: [embed] })
+            await message.guild.channels.get('849701097106440203').send({ embeds: [embed] })
         }
     }
 }
