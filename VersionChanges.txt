@@ -7,7 +7,7 @@ NEW:
 -- Added new !pick command for captains to choose their teams **Corresponds to !list
         usage: !pick <#>
 
--- Added new !random command to have teams picked randomly
+-- Added new !random command to have teams picked randomly. Can be used again to make new random teams
 
 -- Added new !addcomp command to allow admins to add new competitors directly as subs
         usage: !addcomp <@mention> <@TeamRole>
