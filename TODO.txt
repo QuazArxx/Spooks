@@ -1,18 +1,19 @@
-Have the bot allow Saucy, Lexi, and I to pick teams that will give them the team role
-    Finish !random command to put random competitors on each team
+Have the bot allow Saucy, Lexi, and I to pick teams that will give them the team role ✅
+    Finish !random command to put random competitors on each team ✅
     Finish adjustments on !pick command to pick teams off list of non captains ✅
         *Remove admin permission and change so only captains can use ✅
     Adjust !list command to show full list when arg is used ✅
-    Remove captain roles at the end of the competition
-    Remove team roles at the end of the competition
+    Remove captain roles at the end of the competition ✅
+    Remove team roles at the end of the competition ✅
 
 Fix !list command to only send multiple embeds depending on amount of competitors
 
-Make an !openentry command to be able to allow more players to join the competition if we decide to allow more
-    Change !start command to !openentry and use !start to add team roles and send message of teams
+Make an !openentry command to be able to allow more players to join the competition if we decide to allow more ✅
+    Change !start command to !openentry and use !start to add team roles and send message of teams ✅
+        Send a message to everyone before sending the team list
 
-Fix !end command to remove captain roles and team roles
+Fix !end command to remove captain roles and team roles ✅
 
-Make an !addcomp command to allow one of us to add a specific person to the competition
+Make an !addcomp command to allow one of us to add a specific person to the competition ✅
 
 Make a dynamic !help command to show commands
