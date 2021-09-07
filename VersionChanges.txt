@@ -1,3 +1,12 @@
+---Version 1.0.1--- "Bug Fixes for The Competition"
+FIXES:
+
+-- Fixed !pick command where it allowed players to be picked twice
+
+-- Fixed !list command error when trying to list players that didn't fill up 2 or more messages
+
+**END
+
 ---Version 1.0.0--- "The Competition"
 NEW:
 
