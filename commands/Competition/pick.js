@@ -28,7 +28,14 @@ module.exports = {
             .setTitle('You need to pick a player to add to your team!')
 
             return message.channel.send({ embeds: [embed] })
+        } else if (playersPicked.some(user => user.userId == competition[args[0]-1].id)) {
+            const embed = new Discord.MessageEmbed()
+            .setColor(colors.red)
+            .setTitle('That player was already picked!')
+
+            return message.channel.send({ embeds: [embed]})
         }
+
         const player = competition[args[0]-1].object.displayName
 
         const captainRoleId = ''
@@ -43,7 +50,7 @@ module.exports = {
 
         // Add them to player picked array
         playersPicked.push({
-            userId: competition[args[0]-1].id,
+            userId: player.id,
             roleId: captainRoleId
         })
 
