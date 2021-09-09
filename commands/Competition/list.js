@@ -3,6 +3,7 @@ const Discord = require('discord.js')
 const competition = require('../../competition.json')
 const colors = require('../../colors.json')
 const functions = require('../../functions')
+
 module.exports = {
     name: 'list',
     permissions: 'ADMINISTRATOR',
@@ -14,6 +15,10 @@ module.exports = {
 
             return message.channel.send({ embeds: [embed] })
         }
+
+        let fiveLoopCounter = 0
+        let loopCounter = 0
+        let competitors = []
 
         let competitors = ''
         let competitors1 = ''
@@ -58,5 +63,53 @@ module.exports = {
         }
         
         // Use an array instead and set addFields to be each element. Maybe only take up to 5 players at a time to add to the message. Maybe done in For loop
+    },
+
+    getFullList: function (message) {
+        let competitionLengthCounter = competition.length
+        let counter = 1
+        while (competitionLengthCounter >= 5) {
+            if (competitionLengthCounter >= 5) {
+                this.getFiveCompetitors()
+
+                const embed = new Discord.MessageEmbed()
+                .setColor(colors.black)
+                .setTitle('__Phasmo Competitors:__')
+                .addFields(
+                    {name: `${counter}. ${competitors[0]}`},
+                    {name: `${counter + 1}. ${competitors[1]}`},
+                    {name: `${counter + 2}. ${competitors[2]}`},
+                    {name: `${counter + 3}. ${competitors[3]}`},
+                    {name: `${counter + 4}. ${competitors[4]}`}
+                )
+
+                counter += 5
+                competitionLengthCounter -= 5
+            }
+        }
+        if (competitionLengthCounter > 0 && competitionLengthCounter < 5) {
+            this.getRestCompetitors()
+        }
+    },
+
+    getPickedList: function (message) {
+
+    },
+
+    getFiveCompetitors: function (players, counter) {
+        players.length = 0
+
+        for (let x = 0; x < 5; x++) {
+            players.push(competition[counter].object.displayName)
+            counter++
+        }
+    },
+
+    getRestCompetitors: function (players, counter, compCounter) {
+        players.length = 0
+
+        for (let x = 0; x < compCounter; x ++) {
+            players.push()
+        }
     }
 }
