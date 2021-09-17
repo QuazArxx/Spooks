@@ -4,6 +4,10 @@ const competition = require('../../competition.json')
 const colors = require('../../colors.json')
 const functions = require('../../functions')
 
+let fiveLoopCounter
+let loopCounter
+let compCounter
+let competitors
 module.exports = {
     name: 'list',
     permissions: 'ADMINISTRATOR',
@@ -16,11 +20,12 @@ module.exports = {
             return message.channel.send({ embeds: [embed] })
         }
 
-        let fiveLoopCounter = 0
-        let loopCounter = 0
-        let competitors = []
+        fiveLoopCounter = 0
+        loopCounter = 0
+        compCounter = 0
+        competitors = []
 
-        let competitors = ''
+        /*let competitors = ''
         let competitors1 = ''
         let counter = 1
         for (let x = 0; x < competition.length; x++) {
@@ -60,7 +65,7 @@ module.exports = {
             await message.channel.send({ embeds: [embed, embed1] })
         } else {
             await message.channel.send({ embeds: [embed] })
-        }
+        }*/
         
         // Use an array instead and set addFields to be each element. Maybe only take up to 5 players at a time to add to the message. Maybe done in For loop
     },
@@ -96,20 +101,20 @@ module.exports = {
 
     },
 
-    getFiveCompetitors: function (players, counter) {
-        players.length = 0
+    getFiveCompetitors: function () {
+        competitors.length = 0
 
         for (let x = 0; x < 5; x++) {
-            players.push(competition[counter].object.displayName)
-            counter++
+            competitors.push(competition[compCounter].object.displayName)
+            compCounter++
         }
     },
 
-    getRestCompetitors: function (players, counter, compCounter) {
-        players.length = 0
+    getRestCompetitors: function () {
+        competitors.length = 0
 
         for (let x = 0; x < compCounter; x ++) {
-            players.push()
+            competitors.push()
         }
     }
 }
