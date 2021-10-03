@@ -58,7 +58,7 @@ module.exports = {
 
             // Change Send Messages for Me to false
             try {
-                if ((target.id == '387959359394807808') || target.id == '373641434798227488') {
+                if (target.id == '387959359394807808' || target.id == '373641434798227488') {
                     timeoutChannel.permissionOverwrites.edit(target, {SEND_MESSAGES: false})
                 }
             } catch (err) {
@@ -66,9 +66,14 @@ module.exports = {
             }
             
             // Send confirmation messages
-            await message.channel.send(`${target.username} was put in timeout!`)
-            await timeoutChannel.send(`What did you do now, ${target.username}?`)
-            
+            if (target.id == '771120373940224000') {
+                await message.channel.send(`If you feel the need to put yourself in timeout, you MUST'VE done something wrong, ${target.displayName}.`)
+                await timeoutChannel.send('Tsk, tsk, tsk. Bad Lexi.')
+            } else {
+                await message.channel.send(`${target.displayName} was put in timeout!`)
+                await timeoutChannel.send(`What did you do now, ${target.displayName}?`)
+            }
+
         } else if (this.isInTimeout(target) == true) {
             for (let x = 0; x < phasMembers.length; x++) {
                 if (phasMembers[x].id == target.id) {
@@ -87,8 +92,14 @@ module.exports = {
 
             // Send confirmation messages
             await message.guild.members.cache.get(target.id).roles.remove('842463222446817370')
-            await message.channel.send(`${target.username} is no longer in timeout. FREEDOM!`)
-            await anythingChannel.send(`${target.username} has been let out of timeout for good behavior. Or because Alcoholic Stepdaddy is too nice sometimes.`)
+
+            if (target.id == '771120373940224000') {
+                await timeoutChannel.send(`Behave yourself next time, ${target.displayName}!`)
+                await anythingChannel.send(`${target.displayName}, setting the best example since 1996.`)
+            } else {
+                await timeoutChannel.send(`${target.displayName} is no longer in timeout. FREEDOM!`)
+                await anythingChannel.send(`${target.displayName} has been let out of timeout for good behavior. Or because Alcoholic Stepdaddy is too nice sometimes.`)
+            }
         }
     },
 
