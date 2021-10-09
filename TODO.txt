@@ -6,7 +6,7 @@ Have the bot allow Saucy, Lexi, and I to pick teams that will give them the team
     Remove captain roles at the end of the competition ✅
     Remove team roles at the end of the competition ✅
 
-Fix !list command to only send multiple embeds depending on amount of competitors
+Fix !list command to only send multiple embeds depending on amount of competitors ✅
 
 Make an !openentry command to be able to allow more players to join the competition if we decide to allow more ✅
     Change !start command to !openentry and use !start to add team roles and send message of teams ✅
