@@ -7,6 +7,9 @@ NEW:
 -- Added !help command to display a list of commands. !help with no category shows list of categories to use
         usage: !help <category>
 
+-- Added !request command for members to request new features for the bot to be considered
+        usage: !request <Their Request>
+
 **END
 
 ---Version 1.0.1--- "Bug Fixes for 'The Competition'"
