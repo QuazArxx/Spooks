@@ -1,6 +1,6 @@
 {
   "name": "spooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Discord bot for general use in the Phasquad Discord server.",
   "main": "index.js",
   "dependencies": {
