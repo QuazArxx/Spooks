@@ -1,4 +1,15 @@
----Version 1.0.1--- "Bug Fixes for The Competition"
+---Version 1.1.0--- "Additional Features for 'The Competition'"
+NEW:
+
+-- Added ability of !list command to list picked players as well
+        usage: !list picked
+
+-- Added !help command to display a list of commands. !help with no category shows list of categories to use
+        usage: !help <category>
+
+**END
+
+---Version 1.0.1--- "Bug Fixes for 'The Competition'"
 FIXES:
 
 -- Fixed !pick command where it allowed players to be picked twice
@@ -26,9 +37,6 @@ CHANGES:
 -- Changed !start command to !openentry. Now allows admins to reopen entries for more players
 
 -- !start command now adds team roles to players and sends a message for each team to display players
-
--- !list has been updated to also show what players have already been picked
-        usage: !list picked
 
 -- !end now removes competitor role, team role, and captain role
 
