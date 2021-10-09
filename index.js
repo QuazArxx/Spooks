@@ -75,7 +75,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
 // This is the start of the main function when the bot is turned on
 client.on('messageCreate', message => {
-	
+
 	// Checks if bot says a message or if not in the server
 	if (message.author.bot || !message.guild) return;
 
