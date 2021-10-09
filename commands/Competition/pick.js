@@ -36,13 +36,13 @@ module.exports = {
             return message.channel.send({ embeds: [embed]})
         }
 
-        const player = competition[args[0]-1].object.displayName
+        const player = competition[args[0]-1].object
 
         const captainRoleId = ''
         // Push chosen player to author's team array
         for (let x = 0; x < teams.length; x++) {
             if (teams[x].captainId == message.author.id) {
-                teams[x].team.push(player)
+                teams[x].team.push(player.displayName)
                 captainRoleId = teams[x].roleId
                 break
             }
@@ -51,7 +51,8 @@ module.exports = {
         // Add them to player picked array
         playersPicked.push({
             userId: player.id,
-            roleId: captainRoleId
+            roleId: captainRoleId,
+            playerName: player.displayName
         })
 
         fs.writeFile('./competition.json', JSON.stringify(competition), err => {
@@ -64,7 +65,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setColor(colors.green)
-        .setTitle(`${message.author.displayName} picked ${player} for their team.`)
+        .setTitle(`${message.author.displayName} picked ${player.displayName} for their team.`)
 
         await message.channel.send({ embeds: [embed] })
     }
