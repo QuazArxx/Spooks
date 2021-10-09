@@ -3,105 +3,108 @@ const Discord = require('discord.js')
 const competition = require('../../competition.json')
 const colors = require('../../colors.json')
 const functions = require('../../functions')
+const playersPicked = require('../../PlayersPicked.json')
 
-let fiveLoopCounter
-let loopCounter
-let compCounter
-let competitors
 module.exports = {
     name: 'list',
     permissions: 'ADMINISTRATOR',
     async execute(message, args) {
+        if (functions.isThereCompetition == false) {
+            const embed = new Discord.MessageEmbed()
+            .setColor(colors.red)
+            .setTitle('There is no competition happening at this time.')
+
+            return message.channel.send({ embeds: [embed] })
+        }
         if (competition.length == 0) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)
-            .setTitle('List is empty.')
+            .setTitle('Nobody has joined the competition yet.')
 
             return message.channel.send({ embeds: [embed] })
         }
 
-        fiveLoopCounter = 0
-        loopCounter = 0
-        compCounter = 0
-        competitors = []
+        let compCounter = 0
+        let competitors = []
 
-        /*let competitors = ''
-        let competitors1 = ''
-        let counter = 1
-        for (let x = 0; x < competition.length; x++) {
-            if (args[0] == 'picked' && !(functions.playersPicked.length == 0)) {
-                // set competitors equal to the picked array in functions
-                if (x <= functions.playersPicked.length / 2) {
-                    competitors += `${counter}. ${functions.playersPicked[x]}\n`
-                    counter++
-                } else if (x > functions.playersPicked.length / 2) {
-                    competitors1 += `${counter}. ${functions.playersPicked[x]}\n`
-                    counter++
-                }
+        /*if (args[0] == 'picked') {
+            if (!playersPicked == 0) {
+                this.getPickedList(competitors)
             } else {
-                if (x <= competition.length / 2) {
-                    competitors += `${counter}. ${competition[x].object.displayName}\n`
-                    counter++
-                } else if (x > competition.length / 2) {
-                    competitors1 += `${counter}. ${competition[x].object.displayName}\n`
-                    counter++
-                }
+                const embed = new Discord.MessageEmbed()
+                .setColor(colors.red)
+                .setTitle('No players have been picked yet.')
+
+                return message.channel.send({ embeds: [embed] })
             }
-            
-        }
-        
-        // ADJUST EMBEDS FOR PICKED AND MAKE THEM DYNAMIC ** Use For loop (Check !start)
-        const embed = new Discord.MessageEmbed()
-        .setColor(colors.black)
-        .setTitle(`__Phasmo Competitors:__ ${competition.length}`)
-        .addField(competitors, '\u200B')
-
-        if (!(competitors1 == '')) {
-            const embed1 = new Discord.MessageEmbed()
-            .setColor(colors.black)
-            .setTitle('__Phasmo Competitors Cont.__')
-            .addField(competitors1, '\u200B')
-
-            await message.channel.send({ embeds: [embed, embed1] })
         } else {
-            await message.channel.send({ embeds: [embed] })
+            this.getFullList(message, compCounter, competitors)
         }*/
-        
-        // Use an array instead and set addFields to be each element. Maybe only take up to 5 players at a time to add to the message. Maybe done in For loop
+
+        this.getFullList(message, compCounter, competitors)
     },
 
-    getFullList: function (message) {
+    getFullList: function (message, compCounter, competitors) {
         let competitionLengthCounter = competition.length
         let counter = 1
         while (competitionLengthCounter >= 5) {
             if (competitionLengthCounter >= 5) {
-                this.getFiveCompetitors()
+                this.getFiveCompetitors(compCounter, competitors)
 
                 const embed = new Discord.MessageEmbed()
                 .setColor(colors.black)
                 .setTitle('__Phasmo Competitors:__')
                 .addFields(
-                    {name: `${counter}. ${competitors[0]}`},
-                    {name: `${counter + 1}. ${competitors[1]}`},
-                    {name: `${counter + 2}. ${competitors[2]}`},
-                    {name: `${counter + 3}. ${competitors[3]}`},
-                    {name: `${counter + 4}. ${competitors[4]}`}
+                    {name: `${counter}. ${competitors[0]}`, value: '\u200B'},
+                    {name: `${counter + 1}. ${competitors[1]}`, value: '\u200B'},
+                    {name: `${counter + 2}. ${competitors[2]}`, value: '\u200B'},
+                    {name: `${counter + 3}. ${competitors[3]}`, value: '\u200B'},
+                    {name: `${counter + 4}. ${competitors[4]}`, value: '\u200B'}
                 )
+
+                message.channel.send({ embeds: [embed] })
 
                 counter += 5
                 competitionLengthCounter -= 5
             }
         }
         if (competitionLengthCounter > 0 && competitionLengthCounter < 5) {
-            this.getRestCompetitors()
+            this.getRestCompetitors(competitionLengthCounter, compCounter, competitors)
+
+            const embed = new Discord.MessageEmbed()
+            .setColor(colors.black)
+            .setTitle('__Phasmo Competitors:__')
+
+            for (let x = 0; x < competitionLengthCounter; x++) {
+                embed.addField(`${counter}. ${competitors[x]}`, '\u200B')
+                counter++
+            }
+
+            message.channel.send({ embeds: [embed] })
         }
     },
 
     getPickedList: function (message) {
+        let pickedLengthCounter = playersPicked.length
+        let counter = 1
 
+        if (pickedLengthCounter < 5) {
+            const embed = new Discord.MessageEmbed()
+            .setColor(colors.black)
+            .setTitle('__Picked Competitors:__')
+
+            for (let x = 0; x < pickedLengthCounter; x++) {
+                embed.addField(`${counter}. ${playersPicked[x]}`, '\u200B')
+                counter ++
+            }
+
+            message.channel.send({ embeds: [embed] })
+        } else {
+            this.getFivePicked(compCounter, competitors)
+        }
     },
 
-    getFiveCompetitors: function () {
+    getFiveCompetitors: function (compCounter, competitors) {
         competitors.length = 0
 
         for (let x = 0; x < 5; x++) {
@@ -110,11 +113,16 @@ module.exports = {
         }
     },
 
-    getRestCompetitors: function () {
+    getRestCompetitors: function (competitionLengthCounter, compCounter, competitors) {
         competitors.length = 0
 
-        for (let x = 0; x < compCounter; x ++) {
-            competitors.push()
+        for (let x = 0; x < competitionLengthCounter; x ++) {
+            competitors.push(competition[compCounter].object.displayName)
+            compCounter++
         }
+    },
+
+    getFivePicked: function (compCounter, competitors) {
+        competitors.length = 0
     }
 }
