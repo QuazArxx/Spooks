@@ -105,7 +105,7 @@ client.on('messageCreate', message => {
 	}
 
 	try {
-		command.execute(message, args);
+		command.execute(client, message, args);
 	}
 	catch (error) {
 		console.error(error);
