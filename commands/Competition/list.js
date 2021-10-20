@@ -27,6 +27,7 @@ module.exports = {
         let compCounter = 0
         let competitors = []
 
+        // NEEDS TO BE FINISHED
         /*if (args[0] == 'picked') {
             if (!playersPicked == 0) {
                 this.getPickedList(competitors)
