@@ -17,3 +17,5 @@ Fix !end command to remove captain roles and team roles ✅
 Make an !addcomp command to allow one of us to add a specific person to the competition ✅
 
 Make a dynamic !help command to show commands
+
+Make a !request command for new features ✅
