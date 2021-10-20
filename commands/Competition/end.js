@@ -11,7 +11,8 @@ module.exports = {
     name: 'end',
     description: 'Ends the current competition and removes all competition roles from all participants.',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (functions.isThereCompetition == false) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

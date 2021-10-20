@@ -5,7 +5,8 @@ const colors = require('../../colors.json');
 module.exports = {
 	name: 'request',
 	description: 'Users can request new features for the bot',
-	execute(message, args) {
+    category: 'basic',
+	execute(client, message, args) {
         if(!args.length) {
             return message.channel.send('Please provide a request!0');
         } 

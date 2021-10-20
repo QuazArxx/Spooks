@@ -7,7 +7,8 @@ module.exports = {
     name: 'closeentry',
     description: 'stops further entrants to the competition',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    category: 'competition',
+    execute(client, message, args) {
         if (functions.areEntriesAllowed == true) {
             functions.areEntriesAllowed = false
 

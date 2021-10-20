@@ -8,7 +8,8 @@ const colors = require('../../colors.json')
 module.exports = {
     name: 'leave',
     description: 'Lets users leave the competition grouping.',
-    execute(message, args) {
+    category: 'competition',
+    execute(client, message, args) {
         if (functions.isThereCompetition == false || !(competition.some(user => user.id == message.author.id))) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

@@ -12,7 +12,7 @@ module.exports = {
     name: 'play',
     description: 'Adds a song to the queue.',
     aliases: 'p',
-    async execute(message, args) {
+    async execute(client, message, args) {
         if (!message.member.voice.channel) {
             return message.channel.send('You must be in a voice channel first!')
         }

@@ -9,7 +9,8 @@ module.exports = {
     name: 'captain',
     Description: 'Adds the captain role to captains',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (!message.mentions.users.size) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

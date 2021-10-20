@@ -7,7 +7,8 @@ module.exports = {
     description: 'Puts the person in timeout',
     aliases: 'to',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args){
+    category: 'admin',
+    async execute(client, message, args){
         // Only Lexi can use this command
         if (!(message.author.id == '771120373940224000')) {
             if (message.member.permissions.has('ADMINISTRATOR')) return message.channel.send('Only Lexi can use this command!')

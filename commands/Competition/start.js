@@ -8,7 +8,8 @@ module.exports = {
     name: 'start',
     description: 'Adds team roles and posts teams to start the competition.',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (functions.isThereCompetition == false) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

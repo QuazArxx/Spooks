@@ -9,7 +9,8 @@ module.exports = {
     name: 'addcomp',
     description: 'Adds new competitor as sub',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (functions.isThereCompetition == false) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

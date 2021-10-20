@@ -6,7 +6,8 @@ module.exports = {
     name: 'disconnect',
     description: 'forces the bot to leave the voice channel',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'admin',
+    async execute(client, message, args) {
         const connection = message.member.voice.channel
         serverQueue = queue.get(message.guild.id)
 

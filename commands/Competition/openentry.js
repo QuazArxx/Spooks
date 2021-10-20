@@ -7,7 +7,8 @@ module.exports = {
     name: 'openentry',
     description: 'Starts competition times.',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    category: 'competition',
+    execute(client, message, args) {
         if(functions.isThereCompetition == false) {
             functions.isThereCompetition = true
             functions.areEntriesAllowed = true

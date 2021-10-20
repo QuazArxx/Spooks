@@ -5,7 +5,8 @@ const competition = require('../../competition.json')
 module.exports = {
     name: 'clear',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    category: 'admin',
+    execute(client, message, args) {
         competition.length = 0
         
         fs.writeFile('./competition.json', JSON.stringify(competition), err => {

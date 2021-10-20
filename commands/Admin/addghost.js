@@ -8,7 +8,8 @@ module.exports = {
     name: 'addghost',
     description: 'Adds an item to the ghosts list',
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    category: 'admin',
+    execute(client, message, args) {
         args = message.content.slice(prefix.length).split(' ');
 
         if (!args[1]) {

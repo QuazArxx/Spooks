@@ -7,7 +7,8 @@ const colors = require('../../colors.json')
 
 module.exports = {
     name: 'enter',
-    execute(message, args) {
+    category: 'competition',
+    execute(client, message, args) {
         if (functions.isThereCompetition == false || functions.areEntriesAllowed == false) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

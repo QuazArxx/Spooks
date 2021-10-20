@@ -3,7 +3,8 @@ module.exports = {
     description: 'Removes messages depending on the amount entered.',
     aliases: ['purge', 'delete'],
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    category: 'admin',
+    execute(client, message, args) {
         const amount = parseInt(args[0]) + 1;
 
         if (isNaN(amount)) {

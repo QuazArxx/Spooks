@@ -9,7 +9,8 @@ module.exports = {
     tool: '',
     name: 'wiki',
     description: 'Posts the link to the Wiki Fandom',
-    execute(message, args) {
+    category: 'basic',
+    execute(client, message, args) {
         args = message.content.slice(prefix.length).split(' ');
 
         // Posts the general link to the wiki if there's no argument

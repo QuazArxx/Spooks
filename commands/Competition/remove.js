@@ -7,7 +7,8 @@ module.exports = {
     name: 'remove',
     description: 'Removes a player from the competition list.',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (!args[0] || isNaN(args[0]) || args[0] < 1 || args[0] > competition.length) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

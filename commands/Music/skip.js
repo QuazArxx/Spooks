@@ -2,7 +2,7 @@ const { queue } = require('../../functions')
 module.exports = {
     name: 'skip',
     description: 'Skips the current song in the queue',
-    execute(message, args) {
+    execute(client, message, args) {
         skipSong(message, queue.get(message.guild.id))
     }
 }

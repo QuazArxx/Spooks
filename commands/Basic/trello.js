@@ -4,7 +4,8 @@ module.exports = {
     name: 'trello',
     description: 'posts the link to the Phasmophobia trello board',
     aliases: 't',
-    execute(message, args) {
+    category: 'basic',
+    execute(client, message, args) {
         const embed = new Discord.MessageEmbed()
         .setColor('#000000')
         .setTitle('__Phasmophobia Trello Board__')

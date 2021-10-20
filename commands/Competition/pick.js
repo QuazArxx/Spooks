@@ -9,7 +9,8 @@ const playersPicked = require('../../PlayersPicked.json')
 module.exports = {
     name: 'pick',
     description: 'Lets captains pick team members',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (!functions.isThereCompetition) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

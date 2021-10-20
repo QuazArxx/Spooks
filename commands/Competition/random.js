@@ -9,7 +9,8 @@ module.exports = {
     name: 'random',
     description: 'Picks random teams',
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    category: 'competition',
+    async execute(client, message, args) {
         if (!functions.isThereCompetition) {
             const embed = new Discord.MessageEmbed()
             .setColor(colors.red)

@@ -5,7 +5,7 @@ const colors = require('../../colors.json')
 module.exports = {
     name: 'stop',
     description: 'Stops and empties the queue',
-    execute(message, args) {
+    execute(client, message, args) {
         stopSong(message, queue.get(message.guild.id))
     }
 }
